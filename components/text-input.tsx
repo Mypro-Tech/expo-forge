@@ -1,11 +1,19 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { TextInput, TextInputProps } from 'react-native-paper';
+import { Text, TextInput, TextInputProps, useTheme } from 'react-native-paper';
 
-export const AppTextInput = (props: TextInputProps) => {
+type Props = Omit<TextInputProps, 'error'> & { errorText?: string };
+export const AppTextInput = (props: Props) => {
+  const { errorText, ...rest } = props;
+  const {
+    colors: { error },
+  } = useTheme();
   return (
     <View style={styles.container}>
-      <TextInput {...props} />
+      <TextInput {...rest} error={Boolean(errorText?.length)} />
+      <Text variant='bodySmall' style={{ color: error }}>
+        {errorText}
+      </Text>
     </View>
   );
 };
