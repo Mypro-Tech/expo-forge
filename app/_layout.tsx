@@ -6,6 +6,7 @@ import 'react-native-reanimated';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { PaperProvider } from 'react-native-paper';
+import { SessionProvider } from '@/auth/ctx';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -29,13 +30,15 @@ export default function RootLayout() {
 
   return (
     <PaperProvider>
-      <QueryClientProvider client={queryClient}>
-        <Stack>
-          <Stack.Screen name='sign-in' options={{ headerShown: false }} />
-          <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
-          <Stack.Screen name='+not-found' />
-        </Stack>
-      </QueryClientProvider>
+      <SessionProvider>
+        <QueryClientProvider client={queryClient}>
+          <Stack>
+            <Stack.Screen name='sign-in' options={{ headerShown: false }} />
+            <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
+            <Stack.Screen name='+not-found' />
+          </Stack>
+        </QueryClientProvider>
+      </SessionProvider>
     </PaperProvider>
   );
 }

@@ -20,7 +20,7 @@ export const useLoginMutation = (options: Props = {}) => {
     }: {
       email: string;
       password: string;
-    }) => {
+    }): Promise<AxiosResponse<{ token: string }>> => {
       return await axios.post(API_URL + 'login', { email, password });
     },
   });

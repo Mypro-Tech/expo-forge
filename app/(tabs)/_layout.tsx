@@ -2,11 +2,12 @@ import { Redirect, Tabs } from 'expo-router';
 import React from 'react';
 import { TabBarIcon } from '@/components/navigation/tab-bar-icon';
 import { useTheme } from 'react-native-paper';
+import { useSession } from '@/auth/ctx';
 
 export default function TabLayout() {
   const theme = useTheme();
-
-  if (true) {
+  const { isLoading, session } = useSession();
+  if (!session) {
     // On web, static rendering will stop here as the user is not authenticated
     // in the headless Node process that the pages are rendered in.
     return <Redirect href='/sign-in' />;
