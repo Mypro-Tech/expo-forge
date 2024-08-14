@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 import { Appbar, Text } from 'react-native-paper';
 import { ScreenWrapper } from 'react-native-screen-wrapper';
 
-export default function Home() {
+export default function HomeScreen() {
   return (
     <ScreenWrapper>
       <Appbar.Header>
